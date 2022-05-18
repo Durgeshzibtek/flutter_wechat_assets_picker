@@ -1521,6 +1521,8 @@ class DefaultAssetPickerBuilderDelegate
           gifIndicator(context, asset),
         if (asset.type == AssetType.video) // 如果为视频则显示标识
           videoIndicator(context, asset),
+          dateIndicator(context, asset),
+
       ],
     );
   }
@@ -1686,17 +1688,19 @@ class DefaultAssetPickerBuilderDelegate
       String text,
       String semanticsText,
     ) {
-      return Flexible(
-        child: ScaleText(
-          text,
-          style: const TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.normal,
+      return Center(
+        child: Flexible(
+          child: ScaleText(
+            text,
+            style: const TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.normal,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.fade,
+            maxScaleFactor: 1.2,
+            semanticsLabel: semanticsText,
           ),
-          maxLines: 1,
-          overflow: TextOverflow.fade,
-          maxScaleFactor: 1.2,
-          semanticsLabel: semanticsText,
         ),
       );
     }
@@ -2137,6 +2141,41 @@ class DefaultAssetPickerBuilderDelegate
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+  Widget dateIndicator(BuildContext context, AssetEntity asset) {
+    return PositionedDirectional(
+      start: 5,
+      end: 0,
+      bottom: 0,
+      top: 5,
+      child: Container(
+        child: Text(
+          asset.createDateTime.month.toString() + "." +asset.createDateTime.day.toString()+ "." + asset.createDateTime.year.toString().substring(2),
+          style: const TextStyle(
+              color: Color.fromRGBO(240, 242, 242, 8),
+              fontSize: 12
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget displayPhotoId(BuildContext context, AssetEntity asset) {
+    return PositionedDirectional(
+      start: 0,
+      end: 0,
+      bottom: 0,
+      child: Container(
+        child: Text(
+          asset.id.toString(),
+          // asset.createDateTime.month.toString() + "." +asset.createDateTime.day.toString()+ "." + asset.createDateTime.year.toString(),
+          style: const TextStyle(
+            color: Color.fromRGBO(240, 242, 242, 8),
+            fontSize: 13,
+          ),
         ),
       ),
     );

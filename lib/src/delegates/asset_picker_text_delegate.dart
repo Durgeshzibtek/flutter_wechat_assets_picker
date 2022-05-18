@@ -39,11 +39,11 @@ AssetPickerTextDelegate assetPickerTextDelegateFromLocale(Locale? locale) {
 class AssetPickerTextDelegate {
   const AssetPickerTextDelegate();
 
-  String get languageCode => 'zh';
+  String get languageCode => 'en';
 
   /// Confirm string for the confirm button.
   /// 确认按钮的字段
-  String get confirm => '确认';
+  String get confirm => 'Next';
 
   /// Cancel string for back button.
   /// 返回按钮的字段
@@ -172,7 +172,7 @@ class EnglishAssetPickerTextDelegate extends AssetPickerTextDelegate {
   String get languageCode => 'en';
 
   @override
-  String get confirm => 'Confirm';
+  String get confirm => 'Next';
 
   @override
   String get cancel => 'Cancel';

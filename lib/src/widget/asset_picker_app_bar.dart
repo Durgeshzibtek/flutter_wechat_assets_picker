@@ -121,20 +121,15 @@ class AssetPickerAppBar extends StatelessWidget implements PreferredSizeWidget {
               bottom: 0.0,
               start: canPop(context) ? _barHeight : 0.0,
               end: automaticallyImplyActions ? _barHeight : 0.0,
-              child: Align(
-                alignment: centerTitle
-                    ? Alignment.center
-                    : AlignmentDirectional.centerStart,
-                child: DefaultTextStyle(
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .copyWith(fontSize: 23.0),
-                  maxLines: 1,
-                  softWrap: false,
-                  overflow: TextOverflow.ellipsis,
-                  child: titleWidget,
-                ),
+              child: DefaultTextStyle(
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(fontSize: 23.0),
+                maxLines: 1,
+                softWrap: false,
+                overflow: TextOverflow.ellipsis,
+                child: titleWidget,
               ),
             ),
           if (canPop(context) && (actions?.isEmpty ?? true))
