@@ -1688,7 +1688,7 @@ class DefaultAssetPickerBuilderDelegate
           text,
           style: const TextStyle(
             fontSize: 17,
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.bold,
             fontFamily: 'NimbusRegular'
           ),
           maxLines: 1,
