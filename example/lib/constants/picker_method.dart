@@ -35,6 +35,9 @@ class PickMethod {
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             requestType: RequestType.image,
+            filterOptions: FilterOptionGroup(
+              videoOption: const FilterOption(durationConstraint: DurationConstraint(max: Duration(seconds: 30))),
+            ),
           ),
         );
       },
@@ -53,6 +56,9 @@ class PickMethod {
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             requestType: RequestType.video,
+            filterOptions: FilterOptionGroup(
+              videoOption: const FilterOption(durationConstraint: DurationConstraint(max: Duration(seconds: 30))),
+            ),
           ),
         );
       },
@@ -97,6 +103,7 @@ class PickMethod {
               BuildContext context,
               AssetPathEntity? path,
               int length,
+
             ) {
               if (path?.isAll != true) {
                 return null;
@@ -192,6 +199,9 @@ class PickMethod {
           pickerConfig: AssetPickerConfig(
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
+            filterOptions: FilterOptionGroup(
+              videoOption: const FilterOption(durationConstraint: DurationConstraint(max: Duration(seconds: 30))),
+            ),
           ),
         );
       },

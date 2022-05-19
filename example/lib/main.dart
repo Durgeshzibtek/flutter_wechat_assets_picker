@@ -50,10 +50,10 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const <Locale>[
-        Locale('en'), // Chinese
-        // Locale('iw'), // Hebrew
+        Locale('en'), // English
       ],
       locale: const Locale('en'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

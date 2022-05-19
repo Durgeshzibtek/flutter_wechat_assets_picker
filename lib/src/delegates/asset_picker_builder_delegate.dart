@@ -517,7 +517,8 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
       padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(
         bottom: context.bottomPadding,
       ),
-      color: theme.primaryColor.withOpacity(isAppleOS ? 0.90 : 1),
+      color: Colors.black,
+      // color: theme.primaryColor.withOpacity(isAppleOS ? 0.90 : 1),
       child: Row(
         children: <Widget>[
           if (!isSingleAssetMode || !isAppleOS) previewButton(context),
@@ -894,7 +895,7 @@ class DefaultAssetPickerBuilderDelegate
   @override
   AssetPickerAppBar appBar(BuildContext context) {
     return AssetPickerAppBar(
-      backgroundColor: theme.appBarTheme.backgroundColor,
+      backgroundColor: Colors.black,
       centerTitle: isAppleOS,
       title: Semantics(
         onTapHint: semanticsTextDelegate.sActionSwitchPathLabel,
@@ -1184,12 +1185,7 @@ class DefaultAssetPickerBuilderDelegate
   ///  * Load more assets when the index reached at third line counting
   ///    backwards.
   ///
-  /// 资源构建有几个条件：
-  ///  * 根据资源类型返回对应类型的构建：
-  ///    * [AssetType.audio] -> [audioItemBuilder] 音频类型
-  ///    * [AssetType.image], [AssetType.video] -> [imageAndVideoItemBuilder]
-  ///      图片和视频类型
-  ///  * 在索引到达倒数第三列的时候加载更多资源。
+
   @override
   Widget assetGridItemBuilder(
     BuildContext context,
@@ -1372,7 +1368,6 @@ class DefaultAssetPickerBuilderDelegate
     }
 
     // Return actual length if the current path is all.
-    // 如果当前目录是全部内容，则返回实际的内容数量。
     if (currentPathEntity?.isAll != true) {
       return length;
     }
@@ -1450,16 +1445,15 @@ class DefaultAssetPickerBuilderDelegate
 
   /// It'll pop with [AssetPickerProvider.selectedAssets]
   /// when there are any assets were chosen.
-  /// 当有资源已选时，点击按钮将把已选资源通过路由返回。
   @override
   Widget confirmButton(BuildContext context) {
     return Consumer<DefaultAssetPickerProvider>(
       builder: (_, DefaultAssetPickerProvider p, __) {
         return MaterialButton(
           minWidth: p.isSelectedNotEmpty ? 48 : 20,
-          height: appBarItemHeight,
+          height: 27,
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          disabledColor: theme.dividerColor,
+          disabledColor: const Color.fromRGBO(242, 240, 240, 100),
           color: p.isSelectedNotEmpty ? themeColor : theme.dividerColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
@@ -1475,10 +1469,11 @@ class DefaultAssetPickerBuilderDelegate
                 : textDelegate.confirm,
             style: TextStyle(
               color: p.isSelectedNotEmpty
-                  ? theme.textTheme.bodyText1?.color
-                  : theme.textTheme.caption?.color,
-              fontSize: 17,
-              fontWeight: FontWeight.normal,
+                  ? Colors.black
+                  : Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'NimbusBold'
             ),
             semanticsLabel: p.isSelectedNotEmpty && !isSingleAssetMode
                 ? '${semanticsTextDelegate.confirm}'
@@ -1689,18 +1684,17 @@ class DefaultAssetPickerBuilderDelegate
       String semanticsText,
     ) {
       return Center(
-        child: Flexible(
-          child: ScaleText(
-            text,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.normal,
-            ),
-            maxLines: 1,
-            overflow: TextOverflow.fade,
-            maxScaleFactor: 1.2,
-            semanticsLabel: semanticsText,
+        child: ScaleText(
+          text,
+          style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.normal,
+            fontFamily: 'Nimbus'
           ),
+          maxLines: 1,
+          overflow: TextOverflow.fade,
+          maxScaleFactor: 1.2,
+          semanticsLabel: semanticsText,
         ),
       );
     }
@@ -1726,7 +1720,7 @@ class DefaultAssetPickerBuilderDelegate
           padding: const EdgeInsetsDirectional.only(start: 12, end: 6),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(999),
-            color: theme.dividerColor,
+            // color: theme.dividerColor,
           ),
           child: Selector<DefaultAssetPickerProvider, AssetPathEntity?>(
             selector: (_, DefaultAssetPickerProvider p) => p.currentPath,
@@ -1755,9 +1749,8 @@ class DefaultAssetPickerBuilderDelegate
             child: Padding(
               padding: const EdgeInsetsDirectional.only(start: 5),
               child: DecoratedBox(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: theme.iconTheme.color!.withOpacity(0.5),
                 ),
                 child: ValueListenableBuilder<bool>(
                   valueListenable: isSwitchingPath,
@@ -1767,10 +1760,10 @@ class DefaultAssetPickerBuilderDelegate
                       child: w,
                     );
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.keyboard_arrow_down,
                     size: 20,
-                    color: theme.colorScheme.primary,
+                    color: Color.fromRGBO(242, 240, 240, 100),
                   ),
                 ),
               ),
@@ -2118,15 +2111,15 @@ class DefaultAssetPickerBuilderDelegate
         ),
         child: Row(
           children: <Widget>[
-            const Icon(Icons.videocam, size: 22, color: Colors.white),
+            // const Icon(Icons.videocam, size: 22, color: Colors.white),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 4),
+                padding: const EdgeInsetsDirectional.only(start: 60),
                 child: ScaleText(
                   textDelegate.durationIndicatorBuilder(
                     Duration(seconds: asset.duration),
                   ),
-                  style: const TextStyle(color: Colors.white, fontSize: 15),
+                  style: const TextStyle(color: Color.fromRGBO(242, 240, 240, 100), fontSize: 11),
                   strutStyle: const StrutStyle(
                     forceStrutHeight: true,
                     height: 1.4,
@@ -2153,10 +2146,10 @@ class DefaultAssetPickerBuilderDelegate
       top: 5,
       child: Container(
         child: Text(
-          asset.createDateTime.month.toString() + "." +asset.createDateTime.day.toString()+ "." + asset.createDateTime.year.toString().substring(2),
+          asset.createDateTime.month.toString() + "/" +asset.createDateTime.day.toString()+ "/" + asset.createDateTime.year.toString().substring(2),
           style: const TextStyle(
-              color: Color.fromRGBO(240, 242, 242, 8),
-              fontSize: 12
+              color: Color.fromRGBO(255, 255, 255, 100),
+              fontSize: 10
           ),
         ),
       ),
@@ -2217,3 +2210,9 @@ class DefaultAssetPickerBuilderDelegate
     );
   }
 }
+
+// class BackgroundImage {
+//
+//   static const path = 'images';
+//   static const backgroundImages = '$path/icon.svg';
+// }
