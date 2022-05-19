@@ -1689,7 +1689,7 @@ class DefaultAssetPickerBuilderDelegate
           style: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.normal,
-            fontFamily: 'Nimbus'
+            fontFamily: 'NimbusRegular'
           ),
           maxLines: 1,
           overflow: TextOverflow.fade,
