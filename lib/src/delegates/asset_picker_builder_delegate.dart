@@ -518,7 +518,6 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
         bottom: context.bottomPadding,
       ),
       color: Colors.black,
-      // color: theme.primaryColor.withOpacity(isAppleOS ? 0.90 : 1),
       child: Row(
         children: <Widget>[
           if (!isSingleAssetMode || !isAppleOS) previewButton(context),
@@ -1465,7 +1464,7 @@ class DefaultAssetPickerBuilderDelegate
           child: ScaleText(
             p.isSelectedNotEmpty && !isSingleAssetMode
                 ? '${textDelegate.confirm}'
-                    ' (${p.selectedAssets.length}/${p.maxAssets})'
+                    // ' (${p.selectedAssets.length}/${p.maxAssets})'
                 : textDelegate.confirm,
             style: TextStyle(
               color: p.isSelectedNotEmpty
@@ -1918,9 +1917,12 @@ class DefaultAssetPickerBuilderDelegate
         themeData: theme,
         maxAssets: p.maxAssets,
       );
-      if (result != null) {
-        Navigator.of(context).maybePop(result);
-      }
+         Navigator.of(context).maybePop(result);
+
+
+      // if (result != null) {
+      //   Navigator.of(context).maybePop(result);
+      // }
     }
 
     return Consumer<DefaultAssetPickerProvider>(
