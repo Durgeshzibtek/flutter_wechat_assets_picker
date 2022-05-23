@@ -1458,7 +1458,11 @@ class DefaultAssetPickerBuilderDelegate
             borderRadius: BorderRadius.circular(3),
           ),
           onPressed: p.isSelectedNotEmpty
-              ? () => Navigator.of(context).maybePop(p.selectedAssets)
+              ? () {
+            print('puspaaa');
+            print(p.selectedAssets);
+            Navigator.of(context).maybePop(p.selectedAssets);
+          }
               : null,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           child: ScaleText(
@@ -1917,12 +1921,10 @@ class DefaultAssetPickerBuilderDelegate
         themeData: theme,
         maxAssets: p.maxAssets,
       );
-         Navigator.of(context).maybePop(result);
 
-
-      // if (result != null) {
-      //   Navigator.of(context).maybePop(result);
-      // }
+      if (result != null) {
+        Navigator.of(context).maybePop(result);
+      }
     }
 
     return Consumer<DefaultAssetPickerProvider>(
@@ -1947,8 +1949,8 @@ class DefaultAssetPickerBuilderDelegate
             builder: (BuildContext c, __, ___) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: ScaleText(
-                '${textDelegate.preview}'
-                '${p.isSelectedNotEmpty ? ' (${p.selectedAssets.length})' : ''}',
+                '${textDelegate.preview}',
+                // '${p.isSelectedNotEmpty ? ' (${p.selectedAssets.length})' : ''}',
                 style: TextStyle(
                   color: p.isSelectedNotEmpty
                       ? null
