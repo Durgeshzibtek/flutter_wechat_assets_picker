@@ -20,7 +20,11 @@ class _MultiAssetsPageState extends State<MultiAssetsPage>
   @override
   int get maxAssetsCount => 9;
 
-   Function? onPress;
+
+
+  Function? onPress(){
+     Navigator.pop(context);
+   }
 
   /// Check each method's source code for more details.
   @override
