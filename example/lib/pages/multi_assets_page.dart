@@ -22,9 +22,7 @@ class _MultiAssetsPageState extends State<MultiAssetsPage>
 
 
 
-  Function? onPress(){
-     Navigator.pop(context);
-   }
+  Function? onPress;
 
   /// Check each method's source code for more details.
   @override
