@@ -12,7 +12,7 @@ import 'constants.dart';
 import 'enums.dart';
 
 class AssetPickerConfig {
-  const AssetPickerConfig({
+   const AssetPickerConfig({
     this.selectedAssets,
     this.maxAssets = 9,
     this.pageSize = 80,
@@ -35,6 +35,7 @@ class AssetPickerConfig {
     this.shouldRevertGrid,
     this.limitedPermissionOverlayPredicate,
     this.pathNameBuilder,
+    this.onPress,
   })  : assert(maxAssets >= 1, 'maxAssets must be greater than 1.'),
         assert(
           pickerTheme == null || themeColor == null,
@@ -71,6 +72,9 @@ class AssetPickerConfig {
   ///
   /// Use `null` to display all assets into a single grid.
   final int pageSize;
+
+  final Function? onPress;
+
 
   /// Thumbnail size in the grid.
   /// 预览时网络的缩略图大小

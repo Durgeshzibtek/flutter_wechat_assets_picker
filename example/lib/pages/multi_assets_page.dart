@@ -20,11 +20,13 @@ class _MultiAssetsPageState extends State<MultiAssetsPage>
   @override
   int get maxAssetsCount => 9;
 
+   Function? onPress;
+
   /// Check each method's source code for more details.
   @override
   List<PickMethod> get pickMethods {
     return <PickMethod>[
-      PickMethod.common(maxAssetsCount),
+      PickMethod.common(maxAssetsCount, onPress),
       PickMethod.image(maxAssetsCount),
       PickMethod.video(maxAssetsCount),
       PickMethod.audio(maxAssetsCount),
@@ -47,6 +49,7 @@ class _MultiAssetsPageState extends State<MultiAssetsPage>
             pickerConfig: AssetPickerConfig(
               maxAssets: maxAssetsCount,
               specialPickerType: SpecialPickerType.wechatMoment,
+              onPress: onPress,
             ),
           );
         },

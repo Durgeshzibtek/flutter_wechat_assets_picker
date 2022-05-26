@@ -20,12 +20,13 @@ class _SingleAssetPageState extends State<SingleAssetPage>
     with AutomaticKeepAliveClientMixin, ExamplePageMixin {
   @override
   int get maxAssetsCount => 1;
+  Function? onPress;
 
   /// Check each method's source code for more details.
   @override
   List<PickMethod> get pickMethods {
     return <PickMethod>[
-      PickMethod.common(maxAssetsCount),
+      PickMethod.common(maxAssetsCount, onPress),
       PickMethod.image(maxAssetsCount),
       PickMethod.video(maxAssetsCount),
       PickMethod.audio(maxAssetsCount),

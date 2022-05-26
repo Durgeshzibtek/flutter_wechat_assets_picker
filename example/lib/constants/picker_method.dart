@@ -15,6 +15,8 @@ Future<AssetEntity?> _pickFromCamera(BuildContext c) {
 
 /// Define a regular pick method.
 class PickMethod {
+
+
   const PickMethod({
     required this.icon,
     required this.name,
@@ -188,7 +190,7 @@ class PickMethod {
     );
   }
 
-  factory PickMethod.common(int maxAssetsCount) {
+  factory PickMethod.common(int maxAssetsCount, Function? onPress) {
     return PickMethod(
       icon: '📹',
       name: 'Common picker',
@@ -197,6 +199,7 @@ class PickMethod {
         return AssetPicker.pickAssets(
           context,
           pickerConfig: AssetPickerConfig(
+            onPress: onPress,
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             filterOptions: FilterOptionGroup(

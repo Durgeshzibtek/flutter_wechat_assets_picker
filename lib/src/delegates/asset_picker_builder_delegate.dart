@@ -52,6 +52,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     Color? themeColor,
     AssetPickerTextDelegate? textDelegate,
     Locale? locale,
+   this.onPress,
   })  : assert(
           pickerTheme == null || themeColor == null,
           'Theme and theme color cannot be set at the same time.',
@@ -96,7 +97,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// Indicates the loading status for the builder.
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
-
+  Function? onPress;
   /// {@macro wechat_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
@@ -111,13 +112,13 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// [assetsGridBuilder] 用于定位 [ScrollView.center] 的 [GlobalKey]
   final GlobalKey gridRevertKey = GlobalKey();
 
+
   /// Whether the assets grid should revert.
   /// 判断资源网格是否需要倒序排列
   ///
   /// [Null] means judging by [isAppleOS].
   /// 使用 [Null] 即使用 [isAppleOS] 进行判断。
   final bool? shouldRevertGrid;
-
   /// {@macro wechat_assets_picker.LimitedPermissionOverlayPredicate}
   final LimitedPermissionOverlayPredicate? limitedPermissionOverlayPredicate;
 
@@ -544,13 +545,13 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     return child;
   }
 
-  /// Back button.
+  /// Back button.   Cross Icon. 
   /// 返回按钮
   Widget backButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
-        onPressed: Navigator.of(context).maybePop,
+        onPressed: () => onPress!(),
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
       ),
@@ -1459,8 +1460,6 @@ class DefaultAssetPickerBuilderDelegate
           ),
           onPressed: p.isSelectedNotEmpty
               ? () {
-            print('puspaaa');
-            print(p.selectedAssets);
             Navigator.of(context).maybePop(p.selectedAssets);
           }
               : null,
