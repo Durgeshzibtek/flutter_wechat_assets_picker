@@ -551,12 +551,18 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
-        onPressed: () => onPress!(),
+        onPressed: () => onPress,
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
       ),
     );
   }
+  
+  // onClick(BuildContext context){
+  // print('poppppppppp');
+  //
+  //    Navigator.pop(context);
+  // }
 
   /// The overlay when the permission is limited on iOS.
   Widget iOSPermissionOverlay(BuildContext context) {
