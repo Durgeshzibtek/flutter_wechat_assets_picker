@@ -83,13 +83,13 @@ class AssetPickerTextDelegate {
 
   String get changeAccessibleLimitedAssets => '点击设置可访问的资源';
 
-  String get accessAllTip => '你已设置应用只能访问设备部分资源，'
-      '建议允许访问「所有资源」';
+  String get accessAllTip => 'App can only access some assets on the device. '
+      'Go to system settings and allow app to access all assets on the device.';
 
   String get goToSystemSettings => '前往系统设置';
 
   /// "Continue accessing some assets".
-  String get accessLimitedAssets => '继续访问部分资源';
+  String get accessLimitedAssets => 'Continue with limited access';
 
   String get accessiblePathName => '可访问的资源';
 
