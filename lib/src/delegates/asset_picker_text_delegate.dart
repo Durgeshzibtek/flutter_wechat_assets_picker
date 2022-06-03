@@ -74,24 +74,24 @@ class AssetPickerTextDelegate {
   /// Un-supported asset type string for assets that
   /// belongs to [AssetType.other].
   /// 未支持的资源类型的字段
-  String get unSupportedAssetType => '尚未支持的资源类型';
+  String get unSupportedAssetType => 'Unsupported HEIC asset type.';
 
   /// "Unable to access all assets in album".
-  String get unableToAccessAll => '无法访问所有资源';
+  String get unableToAccessAll => 'Unable to access all assets on the device'';
 
-  String get viewingLimitedAssetsTip => '应用只能访问部分资源和相册';
+  String get viewingLimitedAssetsTip => 'Only view assets and albums accessible to app.';
 
-  String get changeAccessibleLimitedAssets => '点击设置可访问的资源';
+  String get changeAccessibleLimitedAssets => 'Click to update accessible assets';
 
   String get accessAllTip => 'App can only access some assets on the device. '
       'Go to system settings and allow app to access all assets on the device.';
 
-  String get goToSystemSettings => '前往系统设置';
+  String get goToSystemSettings => 'Go to system settings';
 
   /// "Continue accessing some assets".
   String get accessLimitedAssets => 'Continue with limited access';
 
-  String get accessiblePathName => '可访问的资源';
+  String get accessiblePathName => 'Accessible assets';
 
   /// This is used in video asset item in the picker, in order
   /// to display the duration of the video or audio type of asset.
