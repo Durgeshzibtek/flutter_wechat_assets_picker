@@ -77,7 +77,7 @@ class AssetPickerTextDelegate {
   String get unSupportedAssetType => 'Unsupported HEIC asset type.';
 
   /// "Unable to access all assets in album".
-  String get unableToAccessAll => 'Unable to access all assets on the device'';
+  String get unableToAccessAll => 'Unable to access all assets on the device';
 
   String get viewingLimitedAssetsTip => 'Only view assets and albums accessible to app.';
 
