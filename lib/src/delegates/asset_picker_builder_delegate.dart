@@ -52,7 +52,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     Color? themeColor,
     AssetPickerTextDelegate? textDelegate,
     Locale? locale,
-   this.onPress,
+   this.onPressed,
   })  : assert(
           pickerTheme == null || themeColor == null,
           'Theme and theme color cannot be set at the same time.',
@@ -97,7 +97,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// Indicates the loading status for the builder.
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
-  final Function? onPress;
+  final Function? onPressed;
   /// {@macro wechat_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
@@ -545,19 +545,19 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     return child;
   }
 
-  /// Back button.   Cross Icon. 
+  /// Back button.   Cross Icon.
   /// 返回按钮
   Widget backButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
-        onPressed: () => onPress!(),
+        onPressed: () => onPressed,
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
       ),
     );
   }
-  
+
   // onClick(BuildContext context){
   // print('poppppppppp');
   //
