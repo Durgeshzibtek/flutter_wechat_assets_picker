@@ -51,7 +51,7 @@ class _MultiAssetsPageState extends State<MultiAssetsPage>
             pickerConfig: AssetPickerConfig(
               maxAssets: maxAssetsCount,
               specialPickerType: SpecialPickerType.wechatMoment,
-              onPress: onPress,
+              onPressed: onPress,
             ),
           );
         },

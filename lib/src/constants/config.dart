@@ -35,7 +35,7 @@ class AssetPickerConfig {
     this.shouldRevertGrid,
     this.limitedPermissionOverlayPredicate,
     this.pathNameBuilder,
-    this.onPress,
+    this.onPressed,
   })  : assert(maxAssets >= 1, 'maxAssets must be greater than 1.'),
         assert(
           pickerTheme == null || themeColor == null,
@@ -73,7 +73,7 @@ class AssetPickerConfig {
   /// Use `null` to display all assets into a single grid.
   final int pageSize;
 
-  final Function? onPress;
+  final Function? onPressed;
 
 
   /// Thumbnail size in the grid.

@@ -199,7 +199,7 @@ class PickMethod {
         return AssetPicker.pickAssets(
           context,
           pickerConfig: AssetPickerConfig(
-            onPress: onPress,
+            onPressed: onPress,
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             filterOptions: FilterOptionGroup(
