@@ -553,7 +553,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
       child: IconButton(
         onPressed: () {
           int count = 0;
-          Navigator.of(context).popUntil((_) => count++ >= 1);
+          Navigator.of(context).popUntil((_) => count++ >= 2);
         },
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
