@@ -94,7 +94,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// Indicates the loading status for the builder.
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
-  final VoidCallback ? onPressed;
+  final VoidCallback? onPressed;
 
   /// {@macro wechat_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
@@ -535,11 +535,12 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// Back button.   Cross Icon.
   /// 返回按钮
   Widget backButton(BuildContext context) {
+    int count = 0;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
-        onPressed: Navigator.of(context).maybePop,
-      tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+        onPressed: () => Navigator.of(context).popUntil((_) => count++ >= 2),
+        tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
       ),
     );
