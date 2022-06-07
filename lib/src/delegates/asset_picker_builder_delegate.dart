@@ -97,7 +97,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// Indicates the loading status for the builder.
   /// 指示目前加载的状态
   final LoadingIndicatorBuilder? loadingIndicatorBuilder;
-  Function? onPress;
+  final Function? onPress;
   /// {@macro wechat_assets_picker.AssetSelectPredicate}
   final AssetSelectPredicate<Asset>? selectPredicate;
 
@@ -551,10 +551,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
-        onPressed: () {
-          int count = 0;
-          Navigator.of(context).popUntil((_) => count++ >= 2);
-        },
+        onPressed: () => onPress!(),
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
       ),
