@@ -541,7 +541,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: IconButton(
-          onPressed: () => {},
+          onPressed: ()=>onPressed ,
           tooltip: MaterialLocalizations.of(context).backButtonTooltip,
           icon: const Icon(Icons.close),
         ),
