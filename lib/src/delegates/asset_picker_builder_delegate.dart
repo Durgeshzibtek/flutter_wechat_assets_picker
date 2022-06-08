@@ -536,15 +536,12 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// 返回按钮
   Widget backButton(BuildContext context) {
     int count = 0;
-    return GestureDetector(
-      onTap: () => onPressed,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: IconButton(
-          onPressed: ()=>onPressed ,
-          tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-          icon: const Icon(Icons.close),
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: IconButton(
+        onPressed: () => Navigator.of(context).popUntil((_) => count++ >= 3),
+        tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+        icon: const Icon(Icons.close),
       ),
     );
   }
