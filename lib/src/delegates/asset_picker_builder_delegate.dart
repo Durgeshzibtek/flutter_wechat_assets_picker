@@ -539,7 +539,10 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
-        onPressed: () => Navigator.of(context).popUntil((_) => count++ >= 1),
+        onPressed: () {
+          Navigator.pop(context);
+          Navigator.pop(context);
+        },
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
       ),
