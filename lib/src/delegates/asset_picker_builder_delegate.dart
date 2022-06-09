@@ -2,6 +2,8 @@
 // Use of this source code is governed by an Apache license that can be found
 // in the LICENSE file.
 
+// ignore_for_file: unnecessary_statements
+
 import 'dart:async';
 import 'dart:io';
 import 'dart:math' as math;
@@ -540,8 +542,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: IconButton(
         onPressed: () {
-          Navigator.pop(context);
-          Navigator.pop(context);
+          Navigator.of(context).maybePop;
         },
         tooltip: MaterialLocalizations.of(context).backButtonTooltip,
         icon: const Icon(Icons.close),
