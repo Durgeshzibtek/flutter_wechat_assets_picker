@@ -57,7 +57,7 @@ class PickMethod {
           pickerConfig: AssetPickerConfig(
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
-            keepScrollOffset: false,
+            keepScrollOffset: true,
             requestType: RequestType.video,
             filterOptions: FilterOptionGroup(
               videoOption: const FilterOption(durationConstraint: DurationConstraint(max: Duration(seconds: 30))),
