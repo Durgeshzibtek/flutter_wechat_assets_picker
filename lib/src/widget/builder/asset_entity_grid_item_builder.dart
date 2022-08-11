@@ -2,6 +2,8 @@
 // Use of this source code is governed by an Apache license that can be found
 // in the LICENSE file.
 
+import 'dart:async';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -14,24 +16,18 @@ class AssetEntityGridItemBuilder extends StatefulWidget {
     super.key,
     required this.image,
     required this.failedItemBuilder,
+    required this.enablePopup,
   });
 
   final AssetEntityImageProvider image;
   final WidgetBuilder failedItemBuilder;
+  final bool enablePopup;
 
   @override
   AssetEntityGridItemWidgetState createState() => AssetEntityGridItemWidgetState();
 }
 
 class AssetEntityGridItemWidgetState extends State<AssetEntityGridItemBuilder> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      _firstTimeShowPopupDialog(context);
-    });
-  }
-
   Widget? child;
 
   Widget get newChild {
@@ -70,12 +66,30 @@ class AssetEntityGridItemWidgetState extends State<AssetEntityGridItemBuilder> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // print("${widget.enablePopup}");
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   _firstTimeShowPopupDialog(context);
+    // });
+  }
+  // @override
+  // void dispose() {
+  //   super.initState();
+  //   print("${widget.enablePopup}");
+  //   WidgetsBinding.instance.addPostFrameCallback((_) async {
+  //     _firstTimeShowPopupDialog(context);
+  //   });
+  // }
+
+  @override
   Widget build(BuildContext context) {
     child ??= newChild;
     return child!;
   }
 
   _firstTimeShowPopupDialog(BuildContext context) async {
+    print("Inside Popup");
     return showDialog(
       context: context,
       barrierDismissible: false,
@@ -95,7 +109,7 @@ class AssetEntityGridItemWidgetState extends State<AssetEntityGridItemBuilder> {
                     child: Column(
                       children: [
                         const Text(
-                          "Upload Your Photos",
+                          'Upload Your Photos',
                           style: TextStyle(
                             fontSize: 18,
                             fontFamily: "NimbusBold",

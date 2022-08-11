@@ -1459,6 +1459,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             child: AssetEntityGridItemBuilder(
               image: imageProvider,
               failedItemBuilder: failedItemBuilder,
+              enablePopup: false,
             ),
           ),
         ),
