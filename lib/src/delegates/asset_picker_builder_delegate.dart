@@ -51,6 +51,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     this.shouldRevertGrid,
     this.limitedPermissionOverlayPredicate,
     this.pathNameBuilder,
+    this.enablePop = false,
     Color? themeColor,
     AssetPickerTextDelegate? textDelegate,
     Locale? locale,
@@ -84,6 +85,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
   /// 通常情况下微信选择器使用的是暗色（暗色背景）的主题，
   /// 但某些情况下开发者需要亮色或自定义主题。
   final ThemeData? pickerTheme;
+  final bool? enablePop;
 
   /// Allow users set a special item in the picker with several positions.
   /// 允许用户在选择器中添加一个自定义 item，并指定位置

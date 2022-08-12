@@ -12,7 +12,7 @@ import 'constants.dart';
 import 'enums.dart';
 
 class AssetPickerConfig {
-   const AssetPickerConfig({
+  const AssetPickerConfig({
     this.selectedAssets,
     this.maxAssets = 9,
     this.pageSize = 80,
@@ -36,6 +36,7 @@ class AssetPickerConfig {
     this.limitedPermissionOverlayPredicate,
     this.pathNameBuilder,
     this.onPressed,
+    this.enablePopup = true,
   })  : assert(maxAssets >= 1, 'maxAssets must be greater than 1.'),
         assert(
           pickerTheme == null || themeColor == null,
@@ -46,16 +47,13 @@ class AssetPickerConfig {
           'pageSize must be a multiple of gridCount.',
         ),
         assert(
-          specialPickerType != SpecialPickerType.wechatMoment ||
-              requestType == RequestType.common,
+          specialPickerType != SpecialPickerType.wechatMoment || requestType == RequestType.common,
           'SpecialPickerType.wechatMoment and requestType '
           'cannot be set at the same time.',
         ),
         assert(
-          (specialItemBuilder == null &&
-                  identical(specialItemPosition, SpecialItemPosition.none)) ||
-              (specialItemBuilder != null &&
-                  !identical(specialItemPosition, SpecialItemPosition.none)),
+          (specialItemBuilder == null && identical(specialItemPosition, SpecialItemPosition.none)) ||
+              (specialItemBuilder != null && !identical(specialItemPosition, SpecialItemPosition.none)),
           'Custom item did not set properly.',
         );
 
@@ -66,6 +64,7 @@ class AssetPickerConfig {
   /// Maximum count for asset selection.
   /// 资源选择的最大数量
   final int maxAssets;
+  final bool enablePopup;
 
   /// Assets should be loaded per page.
   /// 资源选择的最大数量
@@ -74,7 +73,6 @@ class AssetPickerConfig {
   final int pageSize;
 
   final Function? onPressed;
-
 
   /// Thumbnail size in the grid.
   /// 预览时网络的缩略图大小

@@ -96,9 +96,11 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     WidgetsBinding.instance.addObserver(this);
     AssetPicker.registerObserve(_onLimitedAssetsUpdated);
     widget.builder.initState(this);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      firstTimeShowPopupDialog(context);
-    });
+    if (widget.builder.enablePop == true) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        firstTimeShowPopupDialog(context);
+      });
+    }
   }
 
   @override
