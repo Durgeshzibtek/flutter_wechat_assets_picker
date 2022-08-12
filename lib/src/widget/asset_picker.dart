@@ -166,6 +166,7 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
                         const SizedBox(height: 8),
                         const Text(
                           'Select photos and videos to add to your Life. The photos in your Life are organized by date so you can upload old photos too.',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,
                             fontFamily: 'NimbusLight',
@@ -204,8 +205,8 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     );
   }
 
-  // showPopup() async {
-  //   final auth = await StorageService.getStringValues();
-  //   print("auth${auth}");
-  // }
+// showPopup() async {
+//   final auth = await StorageService.getStringValues();
+//   print("auth${auth}");
+// }
 }
