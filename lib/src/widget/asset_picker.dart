@@ -148,13 +148,14 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
               content: Builder(
                 builder: (BuildContext context) {
                   return Container(
-                    padding: const EdgeInsets.only(top: 25, left: 35, right: 35),
+                    padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
                     height: 242,
                     width: 330,
                     child: Column(
                       children: [
                         const Text(
                           'Select Multiple Photos to Upload',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 18,
                             fontFamily: 'Nimbus',
