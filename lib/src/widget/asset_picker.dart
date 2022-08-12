@@ -148,7 +148,7 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
               content: Builder(
                 builder: (BuildContext context) {
                   return Container(
-                    padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
+                    padding: const EdgeInsets.only(top: 25, left: 15, right: 15),
                     height: 242,
                     width: 330,
                     child: Column(
