@@ -88,15 +88,13 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
 }
 
 class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with TickerProviderStateMixin, WidgetsBindingObserver {
-  static const _storage = FlutterSecureStorage();
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     AssetPicker.registerObserve(_onLimitedAssetsUpdated);
     widget.builder.initState(this);
-    if (widget.builder.enablePop == true) {
+    if (widget.builder.enablePop == false) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         firstTimeShowPopupDialog(context);
       });
@@ -183,9 +181,9 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
                           height: 33,
                           child: ElevatedButton(
                             onPressed: () async {
+                              Navigator.of(context).maybePop();
                               SharedPreferences prefs = await SharedPreferences.getInstance();
                               await prefs.setString('showPopup', 'false');
-                              Navigator.of(context).maybePop();
                             },
                             style: ElevatedButton.styleFrom(
                               primary: const Color(0Xff0cb373),
@@ -208,8 +206,9 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     );
   }
 
-// showPopup() async {
-//   final auth = await StorageService.getStringValues();
-//   print("auth${auth}");
-// }
+  showpopup() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var result = await prefs.getString('showPopup');
+    result == null ? firstTimeShowPopupDialog(context) : const SizedBox.shrink();
+  }
 }
