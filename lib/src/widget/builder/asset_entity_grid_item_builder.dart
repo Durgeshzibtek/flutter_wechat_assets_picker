@@ -65,22 +65,6 @@ class AssetEntityGridItemWidgetState extends State<AssetEntityGridItemBuilder> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    // print("${widget.enablePopup}");
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   _firstTimeShowPopupDialog(context);
-    // });
-  }
-  // @override
-  // void dispose() {
-  //   super.initState();
-  //   print("${widget.enablePopup}");
-  //   WidgetsBinding.instance.addPostFrameCallback((_) async {
-  //     _firstTimeShowPopupDialog(context);
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -88,70 +72,4 @@ class AssetEntityGridItemWidgetState extends State<AssetEntityGridItemBuilder> {
     return child!;
   }
 
-  _firstTimeShowPopupDialog(BuildContext context) async {
-    print("Inside Popup");
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return Center(
-          child: AlertDialog(
-              insetPadding: EdgeInsets.zero,
-              contentPadding: EdgeInsets.zero,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              backgroundColor: Colors.transparent,
-              content: Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    padding: const EdgeInsets.only(top: 25, left: 35, right: 35),
-                    height: 242,
-                    width: 330,
-                    child: Column(
-                      children: [
-                        const Text(
-                          'Upload Your Photos',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: "NimbusBold",
-                            color: Color(0xffF0F2F2),
-                            fontWeight: FontWeight.bold,
-                          ),
-                          maxLines: 6,
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Tap the Post button to upload and share.',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "NimbusLight",
-                            color: Color(0xffF0F2F2),
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        SizedBox(
-                          width: 158,
-                          height: 33,
-                          child: ElevatedButton(
-                            onPressed: () => Navigator.of(context).maybePop(),
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0Xff0cb373),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(03)),
-                            ),
-                            child: const Text(
-                              'Okay!',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 16, color: Color(0xff000000), fontFamily: "NimbusBold", fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              )),
-        );
-      },
-    );
-  }
 }

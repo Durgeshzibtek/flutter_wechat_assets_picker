@@ -4,7 +4,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wechat_assets_picker/src/widget/builder/local_storage.dart';
 
 import '../constants/config.dart';
 import '../delegates/asset_picker_builder_delegate.dart';
@@ -51,8 +54,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
-  static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path,
-      PickerProvider extends AssetPickerProvider<Asset, Path>>(
+  static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path, PickerProvider extends AssetPickerProvider<Asset, Path>>(
     BuildContext context, {
     required AssetPickerBuilderDelegate<Asset, Path> delegate,
     bool useRootNavigator = true,
@@ -82,18 +84,21 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   @override
-  AssetPickerState<Asset, Path> createState() =>
-      AssetPickerState<Asset, Path>();
+  AssetPickerState<Asset, Path> createState() => AssetPickerState<Asset, Path>();
 }
 
-class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>>
-    with TickerProviderStateMixin, WidgetsBindingObserver {
+class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with TickerProviderStateMixin, WidgetsBindingObserver {
+  static const _storage = FlutterSecureStorage();
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     AssetPicker.registerObserve(_onLimitedAssetsUpdated);
     widget.builder.initState(this);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      firstTimeShowPopupDialog(context);
+    });
   }
 
   @override
@@ -127,4 +132,80 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>>
   Widget build(BuildContext context) {
     return widget.builder.build(context);
   }
+
+  firstTimeShowPopupDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: const Color(0xff000000).withOpacity(0.9),
+      builder: (BuildContext context) {
+        return Center(
+          child: AlertDialog(
+              insetPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.zero,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              backgroundColor: Colors.transparent,
+              content: Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    padding: const EdgeInsets.only(top: 25, left: 35, right: 35),
+                    height: 242,
+                    width: 330,
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Select Multiple Photos to Upload',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'Nimbus',
+                            color: Color(0xffF0F2F2),
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 6,
+                        ),
+                        const SizedBox(height: 8),
+                        const Text(
+                          'Select photos and videos to add to your Life. The photos in your Life are organized by date so you can upload old photos too.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'NimbusLight',
+                            color: Color(0xffF0F2F2),
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        SizedBox(
+                          width: 158,
+                          height: 33,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              SharedPreferences prefs = await SharedPreferences.getInstance();
+                              await prefs.setString('showPopup', 'false');
+                              Navigator.of(context).maybePop();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: const Color(0Xff0cb373),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(03)),
+                            ),
+                            child: const Text(
+                              'Okay!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 16, color: Color(0xff000000), fontFamily: "NimbusBold", fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              )),
+        );
+      },
+    );
+  }
+
+  // showPopup() async {
+  //   final auth = await StorageService.getStringValues();
+  //   print("auth${auth}");
+  // }
 }
