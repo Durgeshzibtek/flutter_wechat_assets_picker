@@ -51,7 +51,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     this.shouldRevertGrid,
     this.limitedPermissionOverlayPredicate,
     this.pathNameBuilder,
-    this.enablePop = false,
+    this.enablePop,
     Color? themeColor,
     AssetPickerTextDelegate? textDelegate,
     Locale? locale,

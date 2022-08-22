@@ -90,6 +90,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
 class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with TickerProviderStateMixin, WidgetsBindingObserver {
   @override
   void initState() {
+    print("widget.builder.enablePop${widget.builder.enablePop}");
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     AssetPicker.registerObserve(_onLimitedAssetsUpdated);

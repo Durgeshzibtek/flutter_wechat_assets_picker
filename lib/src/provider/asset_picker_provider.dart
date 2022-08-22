@@ -23,6 +23,7 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
   AssetPickerProvider({
     this.maxAssets = 9,
     this.pageSize = 320,
+    this.enablePopup = true,
     this.pathThumbnailSize = defaultPathThumbnailSize,
     List<Asset>? selectedAssets,
   }) {
@@ -34,6 +35,7 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
   /// Maximum count for asset selection.
   /// 资源选择的最大数量
   final int maxAssets;
+  final bool enablePopup;
 
   /// Assets should be loaded per page.
   /// 资源选择的最大数量
@@ -109,8 +111,7 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
 
   /// The current page for assets list.
   /// 当前加载的资源列表分页数
-  int get currentAssetsListPage =>
-      (math.max(1, _currentAssets.length) / pageSize).ceil();
+  int get currentAssetsListPage => (math.max(1, _currentAssets.length) / pageSize).ceil();
 
   /// Total count for assets.
   /// 资源总数
@@ -147,8 +148,7 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
   /// This getter provides a "Should Rebuild" condition judgement to [Selector]
   /// with the path entities widget.
   /// 它为目录部件展示部分的 [Selector] 提供了是否重建的条件。
-  int get validPathThumbnailsCount =>
-      _pathsList.values.where((Uint8List? d) => d != null).length;
+  int get validPathThumbnailsCount => _pathsList.values.where((Uint8List? d) => d != null).length;
 
   /// The path which is currently using.
   /// 正在查看的资源路径
@@ -226,11 +226,11 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
   }
 }
 
-class DefaultAssetPickerProvider
-    extends AssetPickerProvider<AssetEntity, AssetPathEntity> {
+class DefaultAssetPickerProvider extends AssetPickerProvider<AssetEntity, AssetPathEntity> {
   DefaultAssetPickerProvider({
     super.selectedAssets,
     super.maxAssets,
+    super.enablePopup,
     super.pageSize,
     super.pathThumbnailSize,
     this.requestType = RequestType.image,
@@ -252,6 +252,7 @@ class DefaultAssetPickerProvider
     this.sortPathDelegate = SortPathDelegate.common,
     this.filterOptions,
     super.maxAssets,
+    super.enablePopup,
     super.pageSize = 80,
     super.pathThumbnailSize,
   }) {
@@ -279,16 +280,14 @@ class DefaultAssetPickerProvider
       return;
     }
     _currentPath = value;
-    if (value != null &&
-        _pathsList.keys.any((AssetPathEntity p) => p.id == value.id)) {
+    if (value != null && _pathsList.keys.any((AssetPathEntity p) => p.id == value.id)) {
       final AssetPathEntity previous = _pathsList.keys.singleWhere(
         (AssetPathEntity p) => p.id == value.id,
       );
       final int index = _pathsList.keys.toList().indexOf(previous);
-      final List<MapEntry<AssetPathEntity, Uint8List?>> newEntries =
-          _pathsList.entries.toList()
-            ..removeAt(index)
-            ..insert(index, MapEntry<AssetPathEntity, Uint8List?>(value, null));
+      final List<MapEntry<AssetPathEntity, Uint8List?>> newEntries = _pathsList.entries.toList()
+        ..removeAt(index)
+        ..insert(index, MapEntry<AssetPathEntity, Uint8List?>(value, null));
       _pathsList
         ..clear()
         ..addEntries(newEntries);

@@ -36,7 +36,7 @@ class AssetPickerConfig {
     this.limitedPermissionOverlayPredicate,
     this.pathNameBuilder,
     this.onPressed,
-    this.enablePopup = false,
+    this.enablePopup = true,
   })  : assert(maxAssets >= 1, 'maxAssets must be greater than 1.'),
         assert(
           pickerTheme == null || themeColor == null,

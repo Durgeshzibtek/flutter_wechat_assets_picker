@@ -75,6 +75,7 @@ class AssetPickerDelegate {
       requestType: pickerConfig.requestType,
       sortPathDelegate: pickerConfig.sortPathDelegate,
       filterOptions: pickerConfig.filterOptions,
+      enablePopup: pickerConfig.enablePopup,
     );
     final Widget picker = AssetPicker<AssetEntity, AssetPathEntity>(
       key: Singleton.pickerKey,
@@ -91,8 +92,7 @@ class AssetPickerDelegate {
         loadingIndicatorBuilder: pickerConfig.loadingIndicatorBuilder,
         selectPredicate: pickerConfig.selectPredicate,
         shouldRevertGrid: pickerConfig.shouldRevertGrid,
-        limitedPermissionOverlayPredicate:
-            pickerConfig.limitedPermissionOverlayPredicate,
+        limitedPermissionOverlayPredicate: pickerConfig.limitedPermissionOverlayPredicate,
         pathNameBuilder: pickerConfig.pathNameBuilder,
         textDelegate: pickerConfig.textDelegate,
         themeColor: pickerConfig.themeColor,
@@ -103,8 +103,7 @@ class AssetPickerDelegate {
       context,
       rootNavigator: useRootNavigator,
     ).push<List<AssetEntity>>(
-      pageRouteBuilder?.call(picker) ??
-          AssetPickerPageRoute<List<AssetEntity>>(builder: (_) => picker),
+      pageRouteBuilder?.call(picker) ?? AssetPickerPageRoute<List<AssetEntity>>(builder: (_) => picker),
     );
     return result;
   }
@@ -126,8 +125,7 @@ class AssetPickerDelegate {
   ///  * [AssetPickerBuilderDelegate] for how to customize/override widgets
   ///    during the picking process.
   /// {@endtemplate}
-  Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path,
-      PickerProvider extends AssetPickerProvider<Asset, Path>>(
+  Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path, PickerProvider extends AssetPickerProvider<Asset, Path>>(
     BuildContext context, {
     required AssetPickerBuilderDelegate<Asset, Path> delegate,
     bool useRootNavigator = true,
@@ -142,8 +140,7 @@ class AssetPickerDelegate {
       context,
       rootNavigator: useRootNavigator,
     ).push<List<Asset>>(
-      pageRouteBuilder?.call(picker) ??
-          AssetPickerPageRoute<List<Asset>>(builder: (_) => picker),
+      pageRouteBuilder?.call(picker) ?? AssetPickerPageRoute<List<Asset>>(builder: (_) => picker),
     );
     return result;
   }
