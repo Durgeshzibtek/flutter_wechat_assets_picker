@@ -39,8 +39,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssets}
-  static Future<List<AssetEntity>?> pickAssets(
-    BuildContext context, {
+  static Future<List<AssetEntity>?> pickAssets(BuildContext context, {
     AssetPickerConfig pickerConfig = const AssetPickerConfig(),
     bool useRootNavigator = true,
     AssetPickerPageRouteBuilder<List<AssetEntity>>? pageRouteBuilder,
@@ -54,8 +53,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
-  static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path, PickerProvider extends AssetPickerProvider<Asset, Path>>(
-    BuildContext context, {
+  static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path, PickerProvider extends AssetPickerProvider<Asset, Path>>(BuildContext context, {
     required AssetPickerBuilderDelegate<Asset, Path> delegate,
     bool useRootNavigator = true,
     AssetPickerPageRouteBuilder<List<Asset>>? pageRouteBuilder,
@@ -90,16 +88,11 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
 class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with TickerProviderStateMixin, WidgetsBindingObserver {
   @override
   void initState() {
-    print("widget.builder.enablePop${widget.builder.enablePop}");
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     AssetPicker.registerObserve(_onLimitedAssetsUpdated);
     widget.builder.initState(this);
-    if (widget.builder.enablePop == false) {
-      WidgetsBinding.instance.addPostFrameCallback((_) async {
-        firstTimeShowPopupDialog(context);
-      });
-    }
+    enablePopup();
   }
 
   @override
@@ -107,7 +100,7 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.resumed) {
       PhotoManager.requestPermissionExtend().then(
-        (PermissionState ps) => widget.builder.permission.value = ps,
+            (PermissionState ps) => widget.builder.permission.value = ps,
       );
     }
   }
@@ -134,7 +127,18 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     return widget.builder.build(context);
   }
 
-  firstTimeShowPopupDialog(BuildContext context) async {
+  enablePopup() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? response = prefs.getString('gallery');
+    print(response);
+    if (response == null || response == false) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await firstTimeShowPopupDialog(context);
+      });
+    }
+  }
+
+  Future<Future> firstTimeShowPopupDialog(BuildContext context) async {
     return showDialog(
       context: context,
       barrierDismissible: false,
@@ -182,9 +186,9 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
                           height: 33,
                           child: ElevatedButton(
                             onPressed: () async {
+                              final SharedPreferences prefs = await SharedPreferences.getInstance();
                               Navigator.of(context).maybePop();
-                              SharedPreferences prefs = await SharedPreferences.getInstance();
-                              await prefs.setString('showPopup', 'false');
+                              await prefs.setString('gallery', 'true');
                             },
                             style: ElevatedButton.styleFrom(
                               primary: const Color(0Xff0cb373),
@@ -205,11 +209,5 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
         );
       },
     );
-  }
-
-  showpopup() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var result = await prefs.getString('showPopup');
-    result == null ? firstTimeShowPopupDialog(context) : const SizedBox.shrink();
   }
 }
