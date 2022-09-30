@@ -4,10 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wechat_assets_picker/src/widget/builder/local_storage.dart';
 
 import '../constants/config.dart';
 import '../delegates/asset_picker_builder_delegate.dart';
@@ -39,7 +37,8 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssets}
-  static Future<List<AssetEntity>?> pickAssets(BuildContext context, {
+  static Future<List<AssetEntity>?> pickAssets(
+    BuildContext context, {
     AssetPickerConfig pickerConfig = const AssetPickerConfig(),
     bool useRootNavigator = true,
     AssetPickerPageRouteBuilder<List<AssetEntity>>? pageRouteBuilder,
@@ -53,7 +52,8 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.pickAssetsWithDelegate}
-  static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path, PickerProvider extends AssetPickerProvider<Asset, Path>>(BuildContext context, {
+  static Future<List<Asset>?> pickAssetsWithDelegate<Asset, Path, PickerProvider extends AssetPickerProvider<Asset, Path>>(
+    BuildContext context, {
     required AssetPickerBuilderDelegate<Asset, Path> delegate,
     bool useRootNavigator = true,
     AssetPickerPageRouteBuilder<List<Asset>>? pageRouteBuilder,
@@ -100,7 +100,7 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.resumed) {
       PhotoManager.requestPermissionExtend().then(
-            (PermissionState ps) => widget.builder.permission.value = ps,
+        (PermissionState ps) => widget.builder.permission.value = ps,
       );
     }
   }
@@ -130,7 +130,6 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
   enablePopup() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? response = prefs.getString('gallery');
-    print(response);
     if (response == null || response == false) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await firstTimeShowPopupDialog(context);
@@ -142,7 +141,7 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     return showDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: const Color(0xff000000).withOpacity(0.9),
+      barrierColor: const Color(0xff000000).withOpacity(0.7),
       builder: (BuildContext context) {
         return Center(
           child: AlertDialog(
