@@ -2108,31 +2108,30 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
   }
 
   Widget dateIndicator(BuildContext context, AssetEntity asset) {
-    return Container();
-    //   Platform.isAndroid ?
-    // PositionedDirectional(
-    //   start: 5,
-    //   end: 0,
-    //   bottom: 0,
-    //   top: 5,
-    //   child: Container(
-    //     child: Text(
-    //       asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-    //       style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
-    //     ),
-    //   ),
-    // ) : PositionedDirectional(
-    //   start: 35,
-    //   end: 0,
-    //   bottom: 0,
-    //   top: 5,
-    //   child: Container(
-    //     child: Text(
-    //       asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-    //       style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
-    //     ),
-    //   ),
-    // );
+    return Platform.isAndroid ?
+    PositionedDirectional(
+      start: 5,
+      end: 0,
+      bottom: 0,
+      top: 5,
+      child: Container(
+        child: Text(
+          asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
+          style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
+        ),
+      ),
+    ) : PositionedDirectional(
+      start: 35,
+      end: 0,
+      bottom: 0,
+      top: 5,
+      child: Container(
+        child: Text(
+          asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
+          style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
+        ),
+      ),
+    );
     // return PositionedDirectional(
     //   start: 5,
     //   end: 0,
