@@ -2117,17 +2117,18 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       child: Container(
         child: Text(
           asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-          style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
+          style: const TextStyle(color: Colors.white, fontSize: 10),
         ),
       ),
     ) : PositionedDirectional(
+      start: 50,
       end: 0,
       bottom: 0,
       top: 5,
       child: Container(
         child: Text(
           asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-          style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
+          style: const TextStyle(color: Colors.white, fontSize: 10),
         ),
       ),
     );
