@@ -1953,11 +1953,17 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           ),
         );
         if (isPreviewEnabled) {
-          return PositionedDirectional(
+          return
+            Platform.isAndroid ?
+            PositionedDirectional(
             top: 0,
             end: 0,
             child: selectorWidget,
-          );
+          ) : PositionedDirectional(
+              top: 0,
+              end: 50,
+              child: selectorWidget,
+            );
         }
         return selectorWidget;
       },
@@ -2013,7 +2019,9 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
   /// 将指示器的图标和文字设置为 [Colors.white]。
   @override
   Widget videoIndicator(BuildContext context, AssetEntity asset) {
-    return PositionedDirectional(
+    return
+      Platform.isAndroid ?
+      PositionedDirectional(
       start: 0,
       end: 0,
       bottom: 0,
@@ -2054,11 +2062,54 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           ],
         ),
       ),
-    );
+    ) :
+      PositionedDirectional(
+        start: -60,
+        end: 0,
+        bottom: 0,
+        child: Container(
+          width: double.maxFinite,
+          height: 26,
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: AlignmentDirectional.bottomCenter,
+              end: AlignmentDirectional.topCenter,
+              colors: <Color>[theme.dividerColor, Colors.transparent],
+            ),
+          ),
+          child: Row(
+            children: <Widget>[
+              // const Icon(Icons.videocam, size: 22, color: Colors.white),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 60),
+                  child: ScaleText(
+                    textDelegate.durationIndicatorBuilder(
+                      Duration(seconds: asset.duration),
+                    ),
+                    style: const TextStyle(color: Color.fromRGBO(242, 240, 240, 100), fontSize: 11),
+                    strutStyle: const StrutStyle(
+                      forceStrutHeight: true,
+                      height: 1.4,
+                    ),
+                    maxLines: 1,
+                    maxScaleFactor: 1.2,
+                    semanticsLabel: semanticsTextDelegate.durationIndicatorBuilder(
+                      Duration(seconds: asset.duration),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
   }
 
   Widget dateIndicator(BuildContext context, AssetEntity asset) {
-    return PositionedDirectional(
+    return Platform.isAndroid ?
+    PositionedDirectional(
       start: 5,
       end: 0,
       bottom: 0,
@@ -2069,7 +2120,30 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
         ),
       ),
+    ) : PositionedDirectional(
+      start: 35,
+      end: 0,
+      bottom: 0,
+      top: 5,
+      child: Container(
+        child: Text(
+          asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
+          style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
+        ),
+      ),
     );
+    // return PositionedDirectional(
+    //   start: 5,
+    //   end: 0,
+    //   bottom: 0,
+    //   top: 5,
+    //   child: Container(
+    //     child: Text(
+    //       asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
+    //       style: const TextStyle(color: Color.fromRGBO(255, 255, 255, 100), fontSize: 10),
+    //     ),
+    //   ),
+    // );
   }
 
   Widget displayPhotoId(BuildContext context, AssetEntity asset) {
