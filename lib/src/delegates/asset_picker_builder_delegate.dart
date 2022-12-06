@@ -542,10 +542,17 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
     int count = 0;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
-      child: IconButton(
-        onPressed: Navigator.of(context).maybePop,
-        tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-        icon: const Icon(Icons.close),
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: Navigator.of(context).maybePop,
+            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+            icon: const Icon(Icons.close),
+          ),
+          Text("Multi Post",
+          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: 'NimbusRegular'),
+          ),
+        ],
       ),
     );
   }
@@ -881,11 +888,11 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
   AssetPickerAppBar appBar(BuildContext context) {
     return AssetPickerAppBar(
       backgroundColor: Colors.black,
-      centerTitle: isAppleOS,
-      title: Semantics(
-        onTapHint: semanticsTextDelegate.sActionSwitchPathLabel,
-        child: pathEntitySelector(context),
-      ),
+     // centerTitle: isAppleOS,
+      // title: Semantics(
+      //   onTapHint: semanticsTextDelegate.sActionSwitchPathLabel,
+      //   child: pathEntitySelector(context),
+      // ),
       leading: backButton(context),
       // Condition for displaying the confirm button:
       // - On Android, show if preview is enabled or if multi asset mode.
@@ -894,7 +901,13 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       // - On iOS, show if no preview and multi asset mode. This is because for iOS
       //   the [bottomActionBar] has the confirm button, but if no preview,
       //   [bottomActionBar] is not displayed.
-      actions: (!isAppleOS || !isPreviewEnabled) && (isPreviewEnabled || !isSingleAssetMode) ? <Widget>[confirmButton(context)] : null,
+      actions: [
+        Semantics(
+          onTapHint: semanticsTextDelegate.sActionSwitchPathLabel,
+          child: pathEntitySelector(context),
+        ),
+      ],
+      //actions: (!isAppleOS || !isPreviewEnabled) && (isPreviewEnabled || !isSingleAssetMode) ? <Widget>[confirmButton(context)] : null,
       actionsPadding: const EdgeInsetsDirectional.only(end: 14),
       blurRadius: isAppleOS ? appleOSBlurRadius : 0,
     );
@@ -2036,17 +2049,20 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             colors: <Color>[theme.dividerColor, Colors.transparent],
           ),
         ),
-        child: Row(
-          children: <Widget>[
-            // const Icon(Icons.videocam, size: 22, color: Colors.white),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 60),
+        child: Padding(
+          padding: const EdgeInsetsDirectional.only(start: 32),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top:3.5, right: 3),
+                child: const Icon(Icons.videocam, size: 16, color: Colors.white),
+              ),
+              Expanded(
                 child: ScaleText(
                   textDelegate.durationIndicatorBuilder(
                     Duration(seconds: asset.duration),
                   ),
-                  style: const TextStyle(color: Color.fromRGBO(242, 240, 240, 100), fontSize: 11),
+                  style: const TextStyle(color: Colors.white, fontSize: 11),
                   strutStyle: const StrutStyle(
                     forceStrutHeight: true,
                     height: 1.4,
@@ -2058,8 +2074,8 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     ) :
@@ -2078,17 +2094,20 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
               colors: <Color>[theme.dividerColor, Colors.transparent],
             ),
           ),
-          child: Row(
-            children: <Widget>[
-              // const Icon(Icons.videocam, size: 22, color: Colors.white),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 60),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.only(start: 32),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top:3.5, right: 3),
+                  child: const Icon(Icons.videocam, size: 16, color: Colors.white),
+                ),
+                Expanded(
                   child: ScaleText(
                     textDelegate.durationIndicatorBuilder(
                       Duration(seconds: asset.duration),
                     ),
-                    style: const TextStyle(color: Color.fromRGBO(242, 240, 240, 100), fontSize: 11),
+                    style: const TextStyle(color: Colors.white, fontSize: 11),
                     strutStyle: const StrutStyle(
                       forceStrutHeight: true,
                       height: 1.4,
@@ -2100,8 +2119,8 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
@@ -2117,7 +2136,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       child: Container(
         child: Text(
           asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-          style: const TextStyle(color: Colors.white, fontSize: 10),
+          style: const TextStyle(color: Colors.white, fontSize: 13),
         ),
       ),
     ) : PositionedDirectional(
@@ -2128,7 +2147,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       child: Container(
         child: Text(
           asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-          style: const TextStyle(color: Colors.white, fontSize: 10),
+          style: const TextStyle(color: Colors.white, fontSize: 13),
         ),
       ),
     );
