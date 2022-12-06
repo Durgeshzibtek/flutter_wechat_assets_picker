@@ -2121,7 +2121,6 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
         ),
       ),
     ) : PositionedDirectional(
-      start: 35,
       end: 0,
       bottom: 0,
       top: 5,
