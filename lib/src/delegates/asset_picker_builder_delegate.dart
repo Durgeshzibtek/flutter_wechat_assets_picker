@@ -515,6 +515,11 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
           if (!isSingleAssetMode || !isAppleOS) previewButton(context),
           if (isAppleOS) const Spacer(),
           if (isAppleOS) confirmButton(context),
+          Spacer(),
+          if(Platform.isAndroid) Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Container(child: confirmButton(context),),
+          )
         ],
       ),
     );

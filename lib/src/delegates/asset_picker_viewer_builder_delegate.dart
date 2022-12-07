@@ -714,7 +714,7 @@ class DefaultAssetPickerViewerBuilderDelegate
                 child: Semantics(
                   sortKey: ordinalSortKey(0),
                   child: IconButton(
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(Icons.arrow_back_ios_sharp),
                     tooltip: MaterialLocalizations.of(
                       context,
                     ).backButtonTooltip,
