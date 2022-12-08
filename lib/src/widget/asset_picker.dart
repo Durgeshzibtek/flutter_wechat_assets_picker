@@ -141,7 +141,7 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
     return showDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: const Color(0xff000000).withOpacity(0.7),
+      barrierColor: const Color(0xff000000).withOpacity(0.6),
       builder: (BuildContext context) {
         return Center(
           child: AlertDialog(
@@ -154,29 +154,30 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
                   return Container(
                     padding: const EdgeInsets.only(top: 25, left: 15, right: 15),
                     height: 242,
-                    width: 330,
+                    width: 300,
+                    color: Colors.pinkAccent,
                     child: Column(
                       children: [
+                        // const Text(
+                        //   'Select Multiple Photos to Upload',
+                        //   textAlign: TextAlign.center,
+                        //   style: TextStyle(
+                        //     fontSize: 18,
+                        //     fontFamily: 'Nimbus',
+                        //     color: Color(0xffF0F2F2),
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        //   maxLines: 6,
+                        // ),
+                        const SizedBox(height: 8),
                         const Text(
-                          'Select Multiple Photos to Upload',
+                          'Select multiple photos/videos from your library',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 18,
-                            fontFamily: 'Nimbus',
+                            fontFamily: 'NimbusBold',
                             color: Color(0xffF0F2F2),
                             fontWeight: FontWeight.bold,
-                          ),
-                          maxLines: 6,
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Select photos and videos to add to your Life. The photos in your Life are organized by date so you can upload old photos too.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'NimbusLight',
-                            color: Color(0xffF0F2F2),
-                            fontWeight: FontWeight.w300,
                           ),
                         ),
                         const SizedBox(height: 15),
