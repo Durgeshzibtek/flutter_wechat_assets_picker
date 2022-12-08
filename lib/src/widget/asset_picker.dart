@@ -155,7 +155,6 @@ class AssetPickerState<Asset, Path> extends State<AssetPicker<Asset, Path>> with
                     padding: const EdgeInsets.only(top: 25, left: 15, right: 15),
                     height: 242,
                     width: 300,
-                    color: Colors.pinkAccent,
                     child: Column(
                       children: [
                         // const Text(
