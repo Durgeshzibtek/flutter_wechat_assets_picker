@@ -2086,7 +2086,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) :
       PositionedDirectional(
-        start: -30,
+        start: -50,
         end: 0,
         bottom: 0,
         child: Container(
@@ -2104,10 +2104,6 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             padding: const EdgeInsetsDirectional.only(start: 32),
             child: Row(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top:3.5, right: 3),
-                  child: const Icon(Icons.videocam, size: 16, color: Colors.white),
-                ),
                 Expanded(
                   child: ScaleText(
                     textDelegate.durationIndicatorBuilder(
@@ -2124,6 +2120,10 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
                       Duration(seconds: asset.duration),
                     ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top:3.5, right: 3),
+                  child: const Icon(Icons.videocam, size: 16, color: Colors.white),
                 ),
               ],
             ),
