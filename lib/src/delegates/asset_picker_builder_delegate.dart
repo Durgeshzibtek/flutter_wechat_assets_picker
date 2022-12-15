@@ -2058,6 +2058,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           padding: const EdgeInsetsDirectional.only(start: 32),
           child: Row(
             children: <Widget>[
+
               Padding(
                 padding: const EdgeInsets.only(top:3.5, right: 3),
                 child: const Icon(Icons.videocam, size: 16, color: Colors.white),
@@ -2085,7 +2086,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) :
       PositionedDirectional(
-        start: -60,
+        start: -30,
         end: 0,
         bottom: 0,
         child: Container(
