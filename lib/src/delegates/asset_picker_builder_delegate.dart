@@ -2147,33 +2147,30 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
               colors: <Color>[theme.dividerColor, Colors.transparent],
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.only(start: 32),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: ScaleText(
-                    textDelegate.durationIndicatorBuilder(
-                      Duration(seconds: asset.duration),
-                    ),
-                    style: const TextStyle(color: Colors.white, fontSize: 11),
-                    strutStyle: const StrutStyle(
-                      forceStrutHeight: true,
-                      height: 1.4,
-                    ),
-                    maxLines: 1,
-                    maxScaleFactor: 1.2,
-                    semanticsLabel: semanticsTextDelegate.durationIndicatorBuilder(
-                      Duration(seconds: asset.duration),
-                    ),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: ScaleText(
+                  textDelegate.durationIndicatorBuilder(
+                    Duration(seconds: asset.duration),
+                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 11),
+                  strutStyle: const StrutStyle(
+                    forceStrutHeight: true,
+                    height: 1.4,
+                  ),
+                  maxLines: 1,
+                  maxScaleFactor: 1.2,
+                  semanticsLabel: semanticsTextDelegate.durationIndicatorBuilder(
+                    Duration(seconds: asset.duration),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top:3.5, right: 3),
-                  child: Icon(Icons.videocam, size: 16, color: Colors.white),
-                ),
-              ],
-            ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top:3.5, right: 3),
+                child: Icon(Icons.videocam, size: 16, color: Colors.white),
+              ),
+            ],
           ),
         ),
       );
