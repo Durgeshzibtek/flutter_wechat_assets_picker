@@ -2030,7 +2030,6 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) :
       Positioned.fill(
-        left: 50,
         child: GestureDetector(
           onTap: isPreviewEnabled ? () => _pushAssetToViewer(context, index, asset) : null,
           child: Consumer<DefaultAssetPickerProvider>(
