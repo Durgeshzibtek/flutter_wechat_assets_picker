@@ -2151,21 +2151,19 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             padding: const EdgeInsetsDirectional.only(start: 32),
             child: Row(
               children: <Widget>[
-                Expanded(
-                  child: ScaleText(
-                    textDelegate.durationIndicatorBuilder(
-                      Duration(seconds: asset.duration),
-                    ),
-                    style: const TextStyle(color: Colors.white, fontSize: 11),
-                    strutStyle: const StrutStyle(
-                      forceStrutHeight: true,
-                      height: 1.4,
-                    ),
-                    maxLines: 1,
-                    maxScaleFactor: 1.2,
-                    semanticsLabel: semanticsTextDelegate.durationIndicatorBuilder(
-                      Duration(seconds: asset.duration),
-                    ),
+                ScaleText(
+                  textDelegate.durationIndicatorBuilder(
+                    Duration(seconds: asset.duration),
+                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 11),
+                  strutStyle: const StrutStyle(
+                    forceStrutHeight: true,
+                    height: 1.4,
+                  ),
+                  maxLines: 1,
+                  maxScaleFactor: 1.2,
+                  semanticsLabel: semanticsTextDelegate.durationIndicatorBuilder(
+                    Duration(seconds: asset.duration),
                   ),
                 ),
                 // const Spacer(),
