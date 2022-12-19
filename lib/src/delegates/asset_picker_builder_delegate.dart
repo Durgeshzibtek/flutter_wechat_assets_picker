@@ -2182,7 +2182,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
         style: const TextStyle(color: Colors.white, fontSize: 13),
       ),
     ) : PositionedDirectional(
-      start: 50,
+      start: 40,
       end: 0,
       bottom: 0,
       top: 5,
