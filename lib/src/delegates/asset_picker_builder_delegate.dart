@@ -2042,7 +2042,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
                 color: selected ? theme.colorScheme.primary.withOpacity(.45) : theme.backgroundColor.withOpacity(.1),
                 child: selected && !isSingleAssetMode
                     ? Align(
-                  alignment: AlignmentDirectional.topStart,
+                  alignment: AlignmentDirectional.topEnd,
                   child: SizedBox(
                     height: indicatorSize / 2.5,
                     child: FittedBox(
