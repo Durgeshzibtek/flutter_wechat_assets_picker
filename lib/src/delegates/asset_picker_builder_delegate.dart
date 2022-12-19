@@ -555,7 +555,10 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
             icon: const Icon(Icons.close),
           ),
           const Text("Multi Post",
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: 'NimbusRegular'),
+          style: TextStyle(fontSize: 28,
+              color: Color(0xfff0f2f2),
+              fontFamily: "NimbusBold",
+              fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -1652,13 +1655,20 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       String semanticsText,
     ) {
       return Center(
-        child: ScaleText(
-          text,
-          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: 'NimbusRegular'),
-          maxLines: 1,
-          overflow: TextOverflow.fade,
-          maxScaleFactor: 1.2,
-          semanticsLabel: semanticsText,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Container(
+            width: 120,
+            alignment: Alignment.topRight,
+            child: ScaleText(
+              text,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'NimbusRegular'),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              maxScaleFactor: 1.2,
+              semanticsLabel: semanticsText,
+            ),
+          ),
         ),
       );
     }
