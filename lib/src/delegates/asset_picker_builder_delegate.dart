@@ -2186,12 +2186,9 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       end: 0,
       bottom: 0,
       top: 5,
-      child: FittedBox(
-        fit: BoxFit.cover,
-        child: Text(
-          asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-          style: const TextStyle(color: Colors.white, fontSize: 12),
-        ),
+      child: Text(
+        asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
+        style: const TextStyle(color: Colors.white, fontSize: 11),
       ),
     );
     // return PositionedDirectional(
