@@ -515,7 +515,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
           if (!isSingleAssetMode || !isAppleOS) previewButton(context),
           if (isAppleOS) const Spacer(),
           if (isAppleOS) confirmButton(context),
-          if(Platform.isAndroid) Spacer(),
+          if(Platform.isAndroid) const Spacer(),
           if(Platform.isAndroid) Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: Container(child: confirmButton(context),),
@@ -554,8 +554,8 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
             tooltip: MaterialLocalizations.of(context).backButtonTooltip,
             icon: const Icon(Icons.close),
           ),
-          Text("Multi Post",
-          style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: 'NimbusRegular'),
+          const Text("Multi Post",
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, fontFamily: 'NimbusRegular'),
           ),
         ],
       ),
@@ -1991,7 +1991,9 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
   @override
   Widget selectedBackdrop(BuildContext context, int index, AssetEntity asset) {
     final double indicatorSize = context.mediaQuery.size.width / gridCount / 3;
-    return Positioned.fill(
+    return
+      Platform.isAndroid ?
+      Positioned.fill(
       child: GestureDetector(
         onTap: isPreviewEnabled ? () => _pushAssetToViewer(context, index, asset) : null,
         child: Consumer<DefaultAssetPickerProvider>(
@@ -2026,7 +2028,44 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           },
         ),
       ),
-    );
+    ) :
+      Positioned.fill(
+        left: 50,
+        child: GestureDetector(
+          onTap: isPreviewEnabled ? () => _pushAssetToViewer(context, index, asset) : null,
+          child: Consumer<DefaultAssetPickerProvider>(
+            builder: (_, DefaultAssetPickerProvider p, __) {
+              final int index = p.selectedAssets.indexOf(asset);
+              final bool selected = index != -1;
+              return AnimatedContainer(
+                duration: switchingPathDuration,
+                padding: EdgeInsets.all(indicatorSize * .35),
+                color: selected ? theme.colorScheme.primary.withOpacity(.45) : theme.backgroundColor.withOpacity(.1),
+                child: selected && !isSingleAssetMode
+                    ? Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: SizedBox(
+                    height: indicatorSize / 2.5,
+                    child: FittedBox(
+                      alignment: AlignmentDirectional.topStart,
+                      fit: BoxFit.cover,
+                      child: Text(
+                        '${index + 1}',
+                        style: TextStyle(
+                          color: theme.textTheme.bodyText1?.color?.withOpacity(.75),
+                          fontWeight: FontWeight.w600,
+                          height: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+                    : const SizedBox.shrink(),
+              );
+            },
+          ),
+        ),
+      );
   }
 
   /// Videos often contains various of color in the cover,
@@ -2058,10 +2097,9 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           padding: const EdgeInsetsDirectional.only(start: 32),
           child: Row(
             children: <Widget>[
-
-              Padding(
-                padding: const EdgeInsets.only(top:3.5, right: 3),
-                child: const Icon(Icons.videocam, size: 16, color: Colors.white),
+              const Padding(
+                padding: EdgeInsets.only(top:3.5, right: 3),
+                child: Icon(Icons.videocam, size: 16, color: Colors.white),
               ),
               Expanded(
                 child: ScaleText(
@@ -2086,7 +2124,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) :
       PositionedDirectional(
-        start: -50,
+        start: -30,
         end: 0,
         bottom: 0,
         child: Container(
@@ -2121,9 +2159,10 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top:3.5, right: 3),
-                  child: const Icon(Icons.videocam, size: 16, color: Colors.white),
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.only(top:3.5, right: 3),
+                  child: Icon(Icons.videocam, size: 16, color: Colors.white),
                 ),
               ],
             ),
@@ -2139,11 +2178,9 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       end: 0,
       bottom: 0,
       top: 5,
-      child: Container(
-        child: Text(
-          asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
-          style: const TextStyle(color: Colors.white, fontSize: 13),
-        ),
+      child: Text(
+        asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
+        style: const TextStyle(color: Colors.white, fontSize: 13),
       ),
     ) : PositionedDirectional(
       start: 50,
