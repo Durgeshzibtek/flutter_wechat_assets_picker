@@ -1963,7 +1963,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
           behavior: HitTestBehavior.opaque,
           onTap: () => selectAsset(context, asset, selected),
           child: Container(
-            margin: EdgeInsets.all(indicatorSize / 4),
+            margin: Platform.isAndroid ? EdgeInsets.all(indicatorSize / 4) : EdgeInsets.all(indicatorSize / 10),
             width: isPreviewEnabled ? indicatorSize : null,
             height: isPreviewEnabled ? indicatorSize : null,
             alignment: AlignmentDirectional.topEnd,
