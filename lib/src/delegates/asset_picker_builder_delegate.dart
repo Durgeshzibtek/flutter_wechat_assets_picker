@@ -2168,11 +2168,14 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
                     ),
                   ),
                 ),
-                const Spacer(),
-                const Padding(
-                  padding: EdgeInsets.only(top:3.5, right: 3),
+                Container(
+                  alignment: Alignment.bottomRight,
                   child: Icon(Icons.videocam, size: 16, color: Colors.white),
                 ),
+                // const Padding(
+                //   padding: EdgeInsets.only(top:3.5, right: 3),
+                //   child: Icon(Icons.videocam, size: 16, color: Colors.white),
+                // ),
               ],
             ),
           ),
