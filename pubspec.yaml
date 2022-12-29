@@ -53,3 +53,6 @@ flutter:
     - family: NimbusSansBold
       fonts:
         - asset: fonts/Nimbus-Sans-D-OT-Bold_32747.ttf
+    - family: NimbusReg
+      fonts:
+        - asset: fonts/nimbus-sans-l.regular.otf

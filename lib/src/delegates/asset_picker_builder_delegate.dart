@@ -1662,7 +1662,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             alignment: Alignment.topRight,
             child: ScaleText(
               text,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'NimbusRegular'),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'NimbusReg'),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               maxScaleFactor: 1.2,
@@ -2181,7 +2181,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
   Widget dateIndicator(BuildContext context, AssetEntity asset) {
     return Platform.isAndroid ?
     PositionedDirectional(
-      start: 5,
+      start: 4,
       end: 0,
       bottom: 0,
       top: 5,
@@ -2190,7 +2190,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
         style: const TextStyle(color: Colors.white, fontSize: 13),
       ),
     ) : PositionedDirectional(
-      start: 40,
+      start: 35,
       end: 0,
       bottom: 0,
       top: 5,
