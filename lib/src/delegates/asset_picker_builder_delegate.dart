@@ -1662,7 +1662,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             alignment: Alignment.topRight,
             child: ScaleText(
               text,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, fontFamily: 'NimbusReg'),
+              style: const TextStyle(fontSize: 16, fontFamily: 'Nimbus'),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               maxScaleFactor: 1.2,
