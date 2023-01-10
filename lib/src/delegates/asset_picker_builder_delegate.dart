@@ -2193,7 +2193,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) : PositionedDirectional(
       //start: 46,
-      start: MediaQuery.of(context).size.width * 0.12,
+      start: asset.createDateTime.day.toString().length == 2 ? MediaQuery.of(context).size.width * 0.14 :  MediaQuery.of(context).size.width * 0.12,
       end: 0,
       bottom: 0,
       top: 5,
