@@ -2192,7 +2192,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) : PositionedDirectional(
       //start: 46,
-      start: MediaQuery.of(context).size.width * 0.13,
+      start: MediaQuery.of(context).size.width * 0.18,
       end: 0,
       bottom: 0,
       top: 5,
