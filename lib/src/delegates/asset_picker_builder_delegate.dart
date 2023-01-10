@@ -1653,6 +1653,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       BuildContext context,
       String text,
       String semanticsText,
+
     ) {
       return Center(
         child: Padding(
