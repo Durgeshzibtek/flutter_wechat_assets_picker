@@ -2180,6 +2180,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
   }
 
   Widget dateIndicator(BuildContext context, AssetEntity asset) {
+    print(asset.createDateTime.day.toString().length);
     print(asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2));
     return Platform.isAndroid ?
     PositionedDirectional(
@@ -2193,7 +2194,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       ),
     ) : PositionedDirectional(
       //start: 46,
-      start: asset.createDateTime.day.toString().length == 2 ? MediaQuery.of(context).size.width * 0.14 :  MediaQuery.of(context).size.width * 0.12,
+      start: asset.createDateTime.day.toString().length == 1 ? MediaQuery.of(context).size.width * 0.14 :  MediaQuery.of(context).size.width * 0.12,
       end: 0,
       bottom: 0,
       top: 5,
