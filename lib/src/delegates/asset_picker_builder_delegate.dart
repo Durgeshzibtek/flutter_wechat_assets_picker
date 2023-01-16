@@ -2181,19 +2181,19 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
 
   Widget dateIndicator(BuildContext context, AssetEntity asset) {
     return Platform.isAndroid ?
-    PositionedDirectional(
-      start: 4,
-      end: 0,
+    Positioned(
+      // start: 4,
+      // end: 0,
       bottom: 0,
       top: 5,
       child: Text(
         asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
         style: const TextStyle(color: Colors.white, fontSize: 13),
       ),
-    ) : PositionedDirectional(
+    ) : Positioned(
       //start: 46,
-      start: asset.createDateTime.day.toString().length == 1 ? MediaQuery.of(context).size.width * 0.14 :  MediaQuery.of(context).size.width * 0.12,
-      end: 0,
+      // start: asset.createDateTime.day.toString().length == 1 ? MediaQuery.of(context).size.width * 0.14 :  MediaQuery.of(context).size.width * 0.12,
+      // end: 0,
       bottom: 0,
       top: 5,
       child: Text(
