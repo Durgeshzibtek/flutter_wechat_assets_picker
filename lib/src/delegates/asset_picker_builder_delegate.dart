@@ -2196,7 +2196,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       // end: 0,
       bottom: 0,
       left: 2,
-      top: 0,
+      top: 5,
       child: Text(
         asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
         style: const TextStyle(color: Colors.white, fontSize: 11),
