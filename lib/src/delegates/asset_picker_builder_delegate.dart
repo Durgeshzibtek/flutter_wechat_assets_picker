@@ -2195,7 +2195,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
       // start: asset.createDateTime.day.toString().length == 1 ? MediaQuery.of(context).size.width * 0.14 :  MediaQuery.of(context).size.width * 0.12,
       // end: 0,
       bottom: 0,
-      top: 5,
+      left: 2,
       child: Text(
         asset.createDateTime.month.toString() + "." + asset.createDateTime.day.toString() + "." + asset.createDateTime.year.toString().substring(2),
         style: const TextStyle(color: Colors.white, fontSize: 11),
