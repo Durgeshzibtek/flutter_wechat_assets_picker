@@ -1988,9 +1988,9 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
             top: 0,
             end: 0,
             child: selectorWidget,
-          ) : PositionedDirectional(
+          ) : Positioned(
               top: 0,
-              end: 50,
+              right: 10,
               child: selectorWidget,
             );
         }
