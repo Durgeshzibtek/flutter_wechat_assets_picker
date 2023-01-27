@@ -1718,7 +1718,7 @@ class DefaultAssetPickerBuilderDelegate extends AssetPickerBuilderDelegate<Asset
               ],
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 5),
+              padding: const EdgeInsetsDirectional.only(start: 5, top: 3.8),
               child: DecoratedBox(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
