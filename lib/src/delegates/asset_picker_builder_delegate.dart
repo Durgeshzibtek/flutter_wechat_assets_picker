@@ -554,7 +554,7 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
             tooltip: MaterialLocalizations.of(context).backButtonTooltip,
             icon: const Icon(Icons.close),
           ),
-          const Text("Multi Post",
+          const Text("Select",
           style: TextStyle(fontSize: 28,
               color: Color(0xfff0f2f2),
               fontFamily: "NimbusBold",
