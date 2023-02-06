@@ -558,7 +558,8 @@ abstract class AssetPickerBuilderDelegate<Asset, Path> {
           style: TextStyle(fontSize: 28,
               color: Color(0xfff0f2f2),
               fontFamily: "NimbusBold",
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold
+          ),
           ),
         ],
       ),
